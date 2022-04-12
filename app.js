@@ -75,6 +75,7 @@ class DOMManager {
         })
         .then((houses) => this.render(houses));
     }
+    // adding a room
     static addRoom(id) {
         for(let house of this.houses) {
             if(house._id == id) {
@@ -87,7 +88,23 @@ class DOMManager {
             }
         }
     }
-
+    // deleting the room
+    static deleteRoom(houseId, roomId) {
+        for (let house of this.houses) {
+            if(house._id == houseId) {
+                for (let room of house.rooms) {
+                    if(room._id == roomId) {
+                        house.rooms.splice(house.rooms.indexOf(room), 1)
+                        HouseService.updateHouse(house)
+                        .then(() => {
+                            return HouseService.getAllHouses();
+                        })
+                        .then((houses) => this.render(houses));
+                    }
+                }
+            }
+        }
+    }
 
     // houses is passed in and that will be render to the page
     static render(houses) {
@@ -111,7 +128,7 @@ class DOMManager {
                                     <input type="text" id="${house._id}-room-area" class="form-control" placeholder="Room Area">
                                 </div>
                             </div>
-                            <button id="${house._id}-new-room" onclick="DOMManager.addRoom('${house._id}')" class="btn btn-primary form-control">Add</button>
+                            <button id="${house._id}-new-room" onclick="DOMManager.addRoom('${house._id}')" class="btn btn-primary mt-3 form-control">Add</button>
                         </div>
                     </div>
                 </div><br>`  ,
@@ -122,9 +139,9 @@ class DOMManager {
                 .append(
                 `<p>
                     <span id="name-${room._id}"><strong>Name: </strong> ${room.name}</span
-                    <span id="name-${room._id}"><strong>Name: </strong> ${room.area}</span
-                    <button class="btn btn-danger" onclick="DOMManager.deleteRoom('${house._id}', '${room._id}')">Delete Room</button>
-                </p>`
+                    <span id="name-${room._id}"><strong>Name: </strong> ${room.area}</span</p>
+                    <button class="btn btn-danger" onclick="DOMManager.deleteRoom('${house._id}', '${room._id}')"> Delete Room </button>
+                `
                 );
             }
         }
