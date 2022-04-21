@@ -23,7 +23,7 @@ const renderPosts = (posts) => {
 
 //  <h6 class="card-subtitle mb-2 text-muted">${post.date} </h6>  -- in case of MongoDB goes in output
 // const url = 'http://localhost:5000/api/posts/'; Using MongoDB 
-const url = 'https://crudcrud.com/api/ade08c3910eb40b79ce1a085c2bf0529/posts';
+const url = 'https://crudcrud.com/api/ade08c3910eb40b79ce1a085c2bf0529/posts';// needs new endpoint every 24hr
 // const url = base + `${post}`;
 
 // Get - Read all posts
