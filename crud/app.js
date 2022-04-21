@@ -10,8 +10,7 @@ const renderPosts = (posts) => {
         output += `
         <div class="card col-md-6 bg-ligth mt-4">
                  <div class="card-body" data-id=${post._id}>
-                   <h5 class="card-title">${post.title} </h5>
-                   <h6 class="card-subtitle mb-2 text-muted">${post.date} </h6>
+                   <h5 class="card-title">${post.title} </h5>  
                    <p class="card-text">${post.body}</p>
                    <a href="#" class="card-link" id="edit-post">Edit</a>
                    <a href="#" class="card-link" id="delete-post">Delete</a>
@@ -22,7 +21,10 @@ const renderPosts = (posts) => {
      postsList.innerHTML = output;
 }
 
-const url = 'http://localhost:5000/api/posts/';
+//  <h6 class="card-subtitle mb-2 text-muted">${post.date} </h6>  -- in case of MongoDB goes in output
+// const url = 'http://localhost:5000/api/posts/'; Using MongoDB 
+const url = 'https://crudcrud.com/api/ade08c3910eb40b79ce1a085c2bf0529/posts';
+// const url = base + `${post}`;
 
 // Get - Read all posts
 // Method: GET
@@ -43,8 +45,9 @@ fetch(url)
         fetch(`${url}/${id}`, {
             method: 'DELETE',
         })
-        .then(res => res.json())
+        .then(res => res.text()).then(console.log)
         .then(() => location.reload())
+        
      }
      if(editButtonIsPressed) {
          const parent = e.target.parentElement;
@@ -58,7 +61,7 @@ fetch(url)
      // Update an existing post
      // METHOD: PATCH
       $('.btn').on('click', () => {
-         fetch(`${url}/${id}`, {
+         fetch(url, {
              method: 'PATCH',
              header: {
                  'Content-Type': 'application/json'
