@@ -8,7 +8,7 @@ let output = '';
 const renderPosts = (posts) => {
     posts.forEach(post => {
         output += `
-        <div class="card col-md-6 bg-ligth mt-4">
+        <div class="card col-md-8 bg-ligth mt-4">
                  <div class="card-body" data-id=${post._id}>
                    <h5 class="card-title">${post.title} </h5>  
                    <p class="card-text">${post.body}</p>
@@ -23,7 +23,7 @@ const renderPosts = (posts) => {
 
 //  <h6 class="card-subtitle mb-2 text-muted">${post.date} </h6>  -- in case of MongoDB goes in output
 // const url = 'http://localhost:5000/api/posts/'; Using MongoDB 
-const url = 'https://crudcrud.com/api/ade08c3910eb40b79ce1a085c2bf0529/posts';// needs new endpoint every 24hr
+const url = 'https://crudcrud.com/api/921572bcd6e840b69fc2e4dc29624252/posts';// needs new endpoint every 24hr
 // const url = base + `${post}`;
 
 // Get - Read all posts
